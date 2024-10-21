@@ -3,7 +3,13 @@
     <head>
         <meta charset="utf-8"/>
         <title>页面标签</title>
-
+        <style>
+            body{
+                background-image:url('1.jpg');
+                background-repeat:no-repeat;
+                background-attachment:fixed
+            }
+        </style>
     </head>
     <body>
         <h1>一级标签</h1>
@@ -13,16 +19,73 @@
             第一行<br/>
             第二行
         <h3>三级标签</h3>
-            <div>div标签独占一行</div>
+            <div id ="section1">div标签独占一行</div>
             <div>div标签独占一行</div>
         <h4>四级标签</h4>
             <span>span标签1</span>
             <span>span标签2</span>
         <h5>五级标签</h5>
-            
-            <img src = "C:\Users\浩\Pictures\1.jpg" alt = "加载失败"/>
+            <a href="https://www.baidu.com" target="1">
+                <img src = "Default.jpg" width="258" height="150" alt="加载失败"/>
+            </a>
+            <!--img src = "C:\Users\浩\Pictures\1.jpg" alt = "加载失败"/-->
         <h6>六级标签</h6>
-            <a href="https://www.baidu.com" target="_blank">百度</a>
+            <a href="https://www.baidu.com" title = "访问百度" target="_blank"  rel="noopener noreferrer">百度</a>
+
+        <a href="#section1">跳转到第一部分</a><br/>
+
+        <iframe src="demo_iframe.htm" name="1"></iframe>
+
+        <table border="10">
+            <tr>
+                <th>姓名</th>
+                <th>年龄</th>
+            </tr>
+            <tr>
+                <td>张三</td>
+                <td>18</td>
+            </tr>
+            <tr>
+                <td>李四</td>
+                <td>19</td>
+            </tr>
+        </table>
+
+        <ul>
+            <li>无序列表项1</li>
+            <li>无序列表项2</li>
+        </ul>
+
+        <ol>
+            <li>有序列表项1</li>
+            <li>有序列表项2</li>
+        </ol>
+
+        <dl>
+            <dt>分类1</dt>
+            <dd>分类项1</dd>
+            <dd>分类项1</dd>
+            <dt>分类2</dt>
+            <dd>分类项2</dd>
+            <dd>分类项2</dd>
+        </dl>
+
+        <form action="" method="get">
+            用户名:<input type="text" name="username" value=""/><br/>
+            密码:<input type="password" name="passwd"/><br/>
+            性别:男<input type="radio" name="sex" value="1"/>
+                女<input type="radio" name="sex" value="2"/><br/>
+            爱好:苹果<input type="checkbox" name="happy" value="1"/>
+                香蕉<input type="checkbox" name="happy" value="2"/><br/>
+            籍贯:<select name="city">
+                    <option value="1">山东</option>
+                    <option value="2">北京</option>
+                </select><br/>
+            上传头像:<input type="file" name="file"/><br/>
+            留言:<textarea name="text"></textarea><br/>
+            <input type="submit" value="提交"/>
+            <input type="reset" value="重置"/>
+        </form>
     </body>
 
 
