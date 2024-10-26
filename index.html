@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
     <head>
@@ -6,9 +7,57 @@
         <style>
             body{
                 background-image:url('1.jpg');
-                background-repeat:repeat-x;
-                background-attachment:fixed
+                background-repeat:no-repeat;
+                background-size:cover;
+                //background-position:center;
+                background-fixed;
             }
+            h1{
+                position:-webkit-sticky;
+                position:sticky;
+                top:0;
+                background-color:green;
+                color:white;
+            }
+            h2{
+                font-style:italic;
+                font-size:30px;
+            }
+            h3{
+                font-style:oblique;
+                font-size:0.875m;
+            }
+            a:link{
+                color:#000000;
+                text-decoration:none;
+                //background-color:#B2FF99;
+            }
+            a:visited{
+                color:#00FF00;
+                text-decoration:underline;
+            }
+            a:hover{
+                color:#FF00FF;
+                text-decoration:underline;
+                background-color:#FF704D;
+            }
+            a:active{color:#0000FF;}
+
+            ul{
+                list-style-type:circle;
+            }
+            ol{
+                list-style-type:upper-roman;
+            }
+            table{
+                border-collapse:collapse;
+            }
+            th{
+                background-color:gray;
+                color:white;
+            }
+
+
         </style>
     </head>
     <body>
@@ -36,7 +85,7 @@
 
         <iframe src="demo_iframe.htm" name="1"></iframe>
 
-        <table border="10">
+        <table border="1">
             <tr>
                 <th>姓名</th>
                 <th>年龄</th>
@@ -86,6 +135,9 @@
             <input type="submit" value="提交"/>
             <input type="reset" value="重置"/>
         </form>
+
+        <p>第一个段落</p>
+        <p>第二个段落</p>
     </body>
 
 
