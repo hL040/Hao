@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>南昌大学Passion战队</title>
-
     <link data-n-head="true" rel="icon" type="image/x-icon" href="Logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css ">
     <style>
         :root {
-            --primary-color: #2A2D7C;    /* 深蓝 */;
+            --primary-color: #2A2D7C; /* 深蓝 */;
             --secondary-color: #E63946; /* 活力红 */;
-            --accent-color: #FFBE0B;     /* 明黄 */;
-            --light-bg: #F8F9FF;         /* 浅色背景 */;
-            --dark-text: #2B2D42;        /* 深色文字 */;
+            --accent-color: #FFBE0B; /* 明黄 */;
+            --light-bg: #F8F9FF; /* 浅色背景 */;
+            --dark-text: #2B2D42; /* 深色文字 */;
             --nav-transparent: #000000; /* 初始背景 */;
             --nav-semi-transparent: #f4f444; /* 浅黄色背景 */;
         }
@@ -31,7 +30,7 @@
             top: 0;
             margin: 0 auto;
             background: var(--nav-transparent);
-            padding: 0.3rem 2rem;
+            padding: 0.1rem 2rem;
             z-index: 1000;
             display: flex;
             justify-content: space-between;
@@ -120,7 +119,7 @@
             font-family: 'STXingkai', cursive; /* 模仿手写风格 */;
             color: white; /* 设置默认文字颜色为白色 */;
             text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
-            opacity:0.85;
+            opacity: 0.85;
         }
 
         /* 将“力”这个字变为红色 */
@@ -129,6 +128,36 @@
             font-family: 'STXingkai', cursive; /* 模仿手写风格 */;
             color: red; /* 设置“力”为红色 */;
             opacity: 0.85;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hero .slogan {
+                font-size: 3rem; /* 调整字体大小 */;
+            }
+
+            .hero .slogan .red-text {
+                font-size: 3.5rem; /* 调整字体大小 */;
+            }
+
+            .navbar {
+                width: 100%;
+                border-radius: 0;
+                padding: 0.8rem 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                padding: 0 1rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
         }
 
         /* 内容区块公共样式 */
@@ -165,10 +194,140 @@
             background: var(--light-bg);
         }
 
-        /* 成就展示 */
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .photo-gallery {
+            flex: 1.5; /* 调整图片区域与文字区域的宽度比例 */
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 40%;
+            margin-right: 2rem;
+        }
+
+        .photo-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 修改后的 .photo 样式 */
+        .photo {
+            display: none; /* 隐藏图片 */;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.3s ease; /* 添加过渡效果 */;
+            transform: scale(1); /* 初始缩放比例 */;
+        }
+
+        /* 修改后的 .photo.active 样式 */
+        .photo.active {
+            display: block; /* 显示图片 */;
+            opacity: 1;
+            transform: scale(1.1); /* 添加放大效果 */;
+        }
+
+        /* 修改后的 Hover 效果 */
+        .photo:hover {
+            transform: scale(1.2) !important; /* 放大效果 */;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2) !important; /* 增强阴影效果 */;
+        }
+
+        .photo-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+        }
+
+        /* 修改导航按钮样式 */
+        .prev-btn, .next-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0);
+            color: var(--dark-text);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .prev-btn {
+            left: -10px;
+        }
+
+        .next-btn {
+            right: -10px;
+        }
+
+        .prev-btn:hover, .next-btn:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .team-description {
+            flex: 1; /* 减小文字区域的宽度 */
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-text);
+            padding: 0 2rem; /* 添加内边距，避免文字贴边 */
+        }
+
+        /* 新增轮播图指示点样式 */
+        .dots-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--secondary-color);
+            transform: scale(1.2);
+        }
+
+        /* 赛事成绩 */
         .achievements {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 2rem;
             width: 100%;
             max-width: 1200px;
@@ -221,36 +380,23 @@
             box-shadow: 0 6px 16px rgba(0,0,0,0.2);
         }
 
-        .fa-bilibili { color: #2BA245; }
-        .fa-qq { color: #12B7F5; }
-        .fa-weibo { color: #E6162D; }
+        .fab.fa-bilibili {
+            color: #00A1D6; /* 哔哩哔哩图标颜色 */;
+        }
 
-        @media (max-width: 768px) {
-            .navbar {
-                width: 100%;
-                border-radius: 0;
-                padding: 0.8rem 1rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-                padding: 0 1rem;
-            }
-
-            .section {
-                padding: 3rem 1rem;
-            }
+        .fa-tiktok {
+            color: #010101; /* 抖音logo黑色部分 */;
+            background: linear-gradient(45deg, #69C9D0 0%, #EE1D52 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 0.8rem;
         }
     </style>
 </head>
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
-        <img src="Logo.png" alt="战队Logo" class="logo">
+        <img src="logo.png" alt="战队Logo" class="logo">
         <div class="nav-links">
             <a href="#home">首页</a>
             <a href="#about">关于我们</a>
@@ -261,17 +407,34 @@
 
     <!-- 首页 -->
     <section class="hero" id="home">
-    <div>
-        <h1 class="slogan">激情四射</h1>
-        <h1 class="slogan">火<span class="red-text">力</span>全开</h1>
-    </div>
-</section>
+        <div>
+            <h1 class="slogan">激情四射</h1>
+            <h1 class="slogan">火<span class="red-text">力</span>全开</h1>
+        </div>
+    </section>
 
     <!-- 关于我们 -->
     <section class="section" id="about" style="background: #f8f9fa;">
         <h2 class="section-title">关于我们</h2>
-        <div class="content">
-            <p>此处添加队伍描述</p>
+        <div class="about-content">
+            <div class="photo-gallery">
+                <div class="photo-container">
+                    <img src="2018-2019合影.jpg" alt="团队合影1" class="photo active">
+                    <img src="2019RM分区赛合影.jpg" alt="团队合影2" class="photo">
+                    <img src="2020合影.jpg" alt="团队合影3" class="photo">
+                    <img src="2021 RoboMaster深圳合影.jpg" alt="团队合影4" class="photo">
+                    <img src="2023RM国赛合影.jpg" alt="团队合影5" class="photo">
+                    <img src="2024RM区域赛合影.jpg" alt="团队合影6" class="photo">
+                    <img src="2024RM国赛合影.jpg" alt="团队合影7" class="photo">
+                </div>
+                <button class="prev-btn" onclick="prevPhoto()">&#10094;</button>
+                <button class="next-btn" onclick="nextPhoto()">&#10095;</button>
+                <!-- 添加指示点容器 -->
+                <div class="dots-container" id="dotsContainer"></div>
+            </div>
+            <div class="team-description">
+                <p>南昌大学机器人队成立于2005年11月，团队从参加单一学科竞赛，到逐步建立面向全校本科生的“竞赛、科研、产品”科技创新体系，形成了主动“承担责任，自主管理，团结协作，学习创新”的“主动式”团队文化，创立了“机器人队+校友会+学生党支部”校内外融合的科技创新平台。一路走来，南昌大学机器人队历经技术积累、体系构建、思想建设三步曲，累积培养各专业本科生700多名，获国家级奖项49项，其他奖项100多项，成绩斐然。南昌大学机器人队注重创新创业，积极培育科研成果，开发科研产品。目前队内累计申报并立项大学生创新创业训练项目200余项，其中国家级创新创业项目21项；申请各类专利36项，其中7项已获授权。团队自主研发产品共计12项，孵化科技公司7家。得到光明日报、中国青年报、中国教育电视台、江西教育电视台、中央电视台的报道，受到了团中央、教育部和江西省主要领导的充分肯定。</p>
+            </div>
         </div>
     </section>
 
@@ -280,10 +443,32 @@
         <h2 class="section-title">赛事成绩</h2>
         <div class="achievements">
             <div class="card">
-                <h3>2024赛季</h3>
-                <p>全国总决赛 八强</p>
+                <h3>2018赛季</h3>
+                <p>团中央、全国学联授予南昌大学机器人队大学生“小平科技创新团队”称号，全国高校中仅50家科技社团获此殊荣。</p>
             </div>
-            <!-- 更多成绩卡片 -->
+            <div class="card">
+                <h3>2020赛季</h3>
+                <p>RoboMaster全国机器人大赛 一等奖</p>
+            </div>
+            <div class="card">
+                <h3>2021赛季</h3>
+                <p>RoboMaster全国机器人大赛 一等奖</p>
+            </div>
+            <div class="card">
+                <h3>2022赛季</h3>
+                <p>RoboMaster全国机器人大赛 二等奖</p>
+            </div>
+            <div class="card">
+                <h3>2023赛季</h3>
+                <p>RoboMaster全国机器人大赛 二等奖</p>
+            </div>
+            <div class="card">
+                <h3>2024赛季</h3>
+                <p>RoboMaster全国总决赛 八强</p>
+            </div>
+            <div class="card">
+                <h3>未完待续......</h3>
+            </div>
         </div>
     </section>
 
@@ -291,11 +476,10 @@
     <section class="section" id="contact">
         <h2 class="section-title">联系我们</h2>
         <div class="contact-info">
-            <p>邮箱：passion@ncu.edu.cn</p>
+            <p>待添加</p>
             <div class="social-links">
-                <a href="https://space.bilibili.com/480643172?spm_id_from=333.1387.follow.user_card.click" target="_blank"><i class="fab fa-bilibili"></i></a>
-                <a href="#"><i class="fab fa-qq"></i></a>
-                <a href="#"><i class="fab fa-weibo"></i></a>
+                <a href="https://space.bilibili.com/480643172?spm_id_from=333.1387.follow.user_card.click " target="_blank"><i class="fab fa-bilibili"></i></a>
+                <a href="https://www.douyin.com/user/MS4wLjABAAAAcwOte0U9uP9hlxCxzKlGeW49FMKNGTaf8WDfku1TPAoAi1vDQOmsrMYsk3h68m8- " target="_blank"><i class="fab fa-tiktok"></i></a>
             </div>
         </div>
     </section>
@@ -320,6 +504,59 @@
                 });
             });
         });
+
+        // 轮播图功能
+        let photoIndex = 0;
+        const photos = document.querySelectorAll('.photo');
+        const dotsContainer = document.getElementById('dotsContainer');
+        const totalPhotos = photos.length;
+
+        // 创建指示点
+        function createDots() {
+            for (let i = 0; i < totalPhotos; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                dot.addEventListener('click', () => showPhoto(i));
+                dotsContainer.appendChild(dot);
+            }
+            updateDots();
+        }
+
+        // 更新指示点状态
+        function updateDots() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === photoIndex);
+            });
+        }
+
+        function showPhoto(index) {
+            // 边界检查
+            if (index < 0) index = totalPhotos - 1;
+            if (index >= totalPhotos) index = 0;
+
+            photos.forEach((photo, i) => {
+                photo.classList.toggle('active', i === index);
+            });
+            photoIndex = index;
+            updateDots();
+        }
+
+        function nextPhoto() {
+            photoIndex = (photoIndex + 1) % totalPhotos;
+            showPhoto(photoIndex);
+        }
+
+        function prevPhoto() {
+            photoIndex = (photoIndex - 1 + totalPhotos) % totalPhotos;
+            showPhoto(photoIndex);
+        }
+
+        // 初始化
+        createDots();
+
+        // 每3秒切换一次图片
+        setInterval(nextPhoto, 3800);
     </script>
 </body>
 </html>
