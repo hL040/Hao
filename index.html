@@ -1,144 +1,325 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南昌大学Passion战队</title>
 
-    <head>
-        <meta charset="utf-8"/>
-        <title>页面标签</title>
-        <style>
-            body{
-                background-image:url('1.jpg');
-                background-repeat:no-repeat;
-                background-size:cover;
-                //background-position:center;
-                background-fixed;
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2A2D7C;    /* 深蓝 */;
+            --secondary-color: #E63946; /* 活力红 */;
+            --accent-color: #FFBE0B;     /* 明黄 */;
+            --light-bg: #F8F9FF;         /* 浅色背景 */;
+            --dark-text: #2B2D42;        /* 深色文字 */;
+            --nav-transparent: #000000; /* 初始背景 */;
+            --nav-semi-transparent: #f4f444; /* 浅黄色背景 */;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        /* 粘性导航栏 */
+        .navbar {
+            position: sticky;
+            top: 0;
+            margin: 0 auto;
+            background: var(--nav-transparent);
+            padding: 0.1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: var(--nav-semi-transparent);
+        }
+
+        .logo {
+            width: 66px;
+            transition: transform 0.3s;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::before {
+            width: 60%;
+        }
+
+        /* 首页背景 */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                        url('1.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /* 文字效果 */
+        .hero .slogan {
+            font-size: 7rem;
+            font-family: 'STXingkai', cursive; /* 模仿手写风格 */;
+            color: white; /* 设置默认文字颜色为白色 */;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+            opacity:0.85;
+        }
+
+        /* 将“力”这个字变为红色 */
+        .hero .slogan .red-text {
+            font-size: 8rem;
+            font-family: 'STXingkai', cursive; /* 模仿手写风格 */;
+            color: red; /* 设置“力”为红色 */;
+            opacity: 0.85;
+        }
+
+        /* 内容区块公共样式 */
+        .section {
+            padding: 5rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--dark-text);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 2px;
+        }
+
+        /* 关于我们 */
+        #about {
+            background: var(--light-bg);
+        }
+
+        /* 成就展示 */
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* 联系我们 */
+        #contact {
+            background: linear-gradient(135deg, var(--light-bg) 0%, #e8f4ff 100%);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.15);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+
+        .fa-bilibili { color: #2BA245; }
+        .fa-qq { color: #12B7F5; }
+        .fa-weibo { color: #E6162D; }
+
+        @media (max-width: 768px) {
+            .navbar {
+                width: 100%;
+                border-radius: 0;
+                padding: 0.8rem 1rem;
             }
-            h1{
-                position:-webkit-sticky;
-                position:sticky;
-                top:0;
-                background-color:green;
-                color:white;
-            }
-            h2{
-                font-style:italic;
-                font-size:30px;
-            }
-            h3{
-                font-style:oblique;
-                font-size:0.875m;
-            }
-            a:link{
-                color:#000000;
-                text-decoration:none;
-                //background-color:#B2FF99;
-            }
-            a:visited{
-                color:#00FF00;
-                text-decoration:underline;
-            }
-            a:hover{
-                color:#FF00FF;
-                text-decoration:underline;
-                background-color:#FF704D;
-            }
-            a:active{color:#0000FF;}
 
-            ul{
-                list-style-type:circle;
-            }
-            ol{
-                list-style-type:upper-roman;
-            }
-            table{
-                border-collapse:collapse;
-            }
-            th{
-                background-color:gray;
-                color:white;
+            .nav-links {
+                display: none;
             }
 
+            .hero h1 {
+                font-size: 2.5rem;
+                padding: 0 1rem;
+            }
 
-        </style>
-    </head>
-    <body>
-        <h1>一级标签</h1>
-            <p>第一个段落</p>
-            <p>第二个段落</p>
-        <h2>二级标签</h2>
-            第一行<br/>
-            第二行
-        <h3>三级标签</h3>
-            <div id ="section1">div标签独占一行</div>
-            <div>div标签独占一行</div>
-        <h4>四级标签</h4>
-            <span>span标签1</span>
-            <span>span标签2</span>
-        <h5>五级标签</h5>
-            <a href="https://www.baidu.com" target="1" rel="noopener noreferrer">
-                <img src = "Default.jpg" width="258" height="150" alt="加载失败"/>
-            </a>
-            <!--img src = "C:\Users\浩\Pictures\1.jpg" alt = "加载失败"/-->
-        <h6>六级标签</h6>
-            <a href="https://www.baidu.com" title = "访问百度" target="_blank"  rel="noopener noreferrer">百度</a>
+            .section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <img src="logo.png" alt="战队Logo" class="logo">
+        <div class="nav-links">
+            <a href="#home">首页</a>
+            <a href="#about">关于我们</a>
+            <a href="#achievements">赛事成绩</a>
+            <a href="#contact">联系我们</a>
+        </div>
+    </nav>
 
-        <a href="#section1">跳转到第一部分</a><br/>
+    <!-- 首页 -->
+    <section class="hero" id="home">
+    <div>
+        <h1 class="slogan">激情四射</h1>
+        <h1 class="slogan">火<span class="red-text">力</span>全开</h1>
+    </div>
+</section>
 
-        <iframe src="demo_iframe.htm" name="1"></iframe>
+    <!-- 关于我们 -->
+    <section class="section" id="about" style="background: #f8f9fa;">
+        <h2 class="section-title">关于我们</h2>
+        <div class="content">
+            <p>此处添加队伍描述</p>
+        </div>
+    </section>
 
-        <table border="1">
-            <tr>
-                <th>姓名</th>
-                <th>年龄</th>
-            </tr>
-            <tr>
-                <td>张三</td>
-                <td>18</td>
-            </tr>
-            <tr>
-                <td>李四</td>
-                <td>19</td>
-            </tr>
-        </table>
+    <!-- 赛事成绩 -->
+    <section class="section" id="achievements">
+        <h2 class="section-title">赛事成绩</h2>
+        <div class="achievements">
+            <div class="card">
+                <h3>2024赛季</h3>
+                <p>全国总决赛 八强</p>
+            </div>
+            <!-- 更多成绩卡片 -->
+        </div>
+    </section>
 
-        <ul>
-            <li>无序列表项1</li>
-            <li>无序列表项2</li>
-        </ul>
+    <!-- 联系我们 -->
+    <section class="section" id="contact">
+        <h2 class="section-title">联系我们</h2>
+        <div class="contact-info">
+            <p>邮箱：passion@ncu.edu.cn</p>
+            <div class="social-links">
+                <a href="https://space.bilibili.com/480643172?spm_id_from=333.1387.follow.user_card.click" target="_blank"><i class="fab fa-bilibili"></i></a>
+                <a href="#"><i class="fab fa-qq"></i></a>
+                <a href="#"><i class="fab fa-weibo"></i></a>
+            </div>
+        </div>
+    </section>
 
-        <ol>
-            <li>有序列表项1</li>
-            <li>有序列表项2</li>
-        </ol>
+    <script>
+        // 检测滚动并改变导航栏背景
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) { // 当滚动超过100px时
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
 
-        <dl>
-            <dt>分类1</dt>
-            <dd>分类项1</dd>
-            <dd>分类项1</dd>
-            <dt>分类2</dt>
-            <dd>分类项2</dd>
-            <dd>分类项2</dd>
-        </dl>
-
-        <form action="" method="get">
-            用户名:<input type="text" name="username" value=""/><br/>
-            密码:<input type="password" name="passwd"/><br/>
-            性别:男<input type="radio" name="sex" value="1"/>
-                女<input type="radio" name="sex" value="2"/><br/>
-            爱好:苹果<input type="checkbox" name="happy" value="1"/>
-                香蕉<input type="checkbox" name="happy" value="2"/><br/>
-            籍贯:<select name="city">
-                    <option value="1">山东</option>
-                    <option value="2">北京</option>
-                </select><br/>
-            上传头像:<input type="file" name="file"/><br/>
-            留言:<textarea name="text"></textarea><br/>
-            <input type="submit" value="提交"/>
-            <input type="reset" value="重置"/>
-        </form>
-
-        <p>第一个段落</p>
-        <p>第二个段落</p>
-    </body>
-
-
+        // 简化后的平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
 </html>
