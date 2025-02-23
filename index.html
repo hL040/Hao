@@ -1,3 +1,8 @@
+<!--
+ 组别介绍
+ 浅黄色改一下
+ RC合照
+-->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -15,6 +20,15 @@
             --dark-text: #2B2D42; /* 深色文字 */;
             --nav-transparent: #000000; /* 初始背景 */;
             --nav-semi-transparent: #f4f444; /* 浅黄色背景 */;
+            --achievement-bg: #e8f4ff; /* 浅蓝色背景 */;
+            --achievement-primary: #0a0e2a; /* 深色背景搭配浅蓝色内容 */;
+            --achievement-secondary: #1a1f4b;
+            --achievement-border: rgba(42, 45, 124, 0.3);
+            --achievement-text: #333;
+            --achievement-accent: #007bff; /* 浅蓝色强调色 */;
+            --achievement-glow: rgba(42, 45, 124, 0.6); /* 浅蓝色光效 */;
+            --card-gradient: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+            --icon-glow: radial-gradient(circle at center, #4A5FC1 0%, #2A2D7C 100%);
         }
 
         * {
@@ -204,11 +218,11 @@
         }
 
         .photo-gallery {
-            flex: 1.5; /* 调整图片区域与文字区域的宽度比例 */
+            flex: 2; /* 调整图片区域与文字区域的宽度比例 */
             position: relative;
             width: 100%;
             height: 0;
-            padding-bottom: 40%;
+            padding-bottom: 50%;
             margin-right: 2rem;
         }
 
@@ -220,9 +234,8 @@
             height: 100%;
         }
 
-        /* 修改后的 .photo 样式 */
+        /* .photo 样式 */
         .photo {
-            display: none; /* 隐藏图片 */;
             position: absolute;
             top: 0;
             left: 0;
@@ -235,14 +248,13 @@
             transform: scale(1); /* 初始缩放比例 */;
         }
 
-        /* 修改后的 .photo.active 样式 */
         .photo.active {
-            display: block; /* 显示图片 */;
             opacity: 1;
-            transform: scale(1.1); /* 添加放大效果 */;
+            transform: scale(1);
+            z-index: 2;
         }
 
-        /* 修改后的 Hover 效果 */
+        /* Hover 效果 */
         .photo:hover {
             transform: scale(1.2) !important; /* 放大效果 */;
             box-shadow: 0 6px 16px rgba(0,0,0,0.2) !important; /* 增强阴影效果 */;
@@ -258,7 +270,7 @@
             padding: 0 1rem;
         }
 
-        /* 修改导航按钮样式 */
+        /* 导航按钮样式 */
         .prev-btn, .next-btn {
             position: absolute;
             top: 50%;
@@ -291,15 +303,7 @@
             transform: translateY(-50%) scale(1.1);
         }
 
-        .team-description {
-            flex: 1; /* 减小文字区域的宽度 */
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--dark-text);
-            padding: 0 2rem; /* 添加内边距，避免文字贴边 */
-        }
-
-        /* 新增轮播图指示点样式 */
+        /* 轮播图指示点样式 */
         .dots-container {
             position: absolute;
             bottom: 20px;
@@ -324,72 +328,357 @@
             transform: scale(1.2);
         }
 
-        /* 赛事成绩 */
-        .achievements {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .card {
-            background: white;
+        /* 团队描述部分 */
+        .team-description {
+            flex: 1;
+            font-size: 1rem;
+            line-height: 1.1;
+            color: var(--dark-text);
             padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-left: 5px solid var(--primary-color);
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.12);
-        }
-
-        .card h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        /* 联系我们 */
-        #contact {
-            background: linear-gradient(135deg, var(--light-bg) 0%, #e8f4ff 100%);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .social-links a {
-            width: 50px;
-            height: 50px;
             background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: justify;
+            position: relative;
+            margin-left: 2rem;
+        }
+
+        .team-description h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            position: relative;
+            padding-left: 1.8rem;
+        }
+
+        .team-description h3:first-child {
+            margin-top: 0;
+        }
+
+        .team-description h3::before {
+            content: "▶";
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+            top: 0.1rem;
+        }
+
+        /* 优化段落间距 */
+        .team-description p {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        /* 添加重点强调 */
+        .key-point {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+
+            .photo-gallery {
+                width: 100%;
+                 margin-right: 0;
+                padding-bottom: 60%;
+            }
+
+            .team-description {
+                margin: 2rem 0 0;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .team-description {
+                padding: 1.5rem;
+                font-size: 1rem;
+            }
+
+            .team-description h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* 赛事成绩 - 时间轴版本 */
+        #achievements {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e6ebff 100%);
+        }
+
+        .timeline-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                #00009f 15%,
+                #00009f 85%,
+                transparent 100%
+            );
+            box-shadow: 0 0 30px var(--achievement-glow);
+            transform: translateX(-50%);
+        }
+
+
+        .timeline-item {
+            position: relative;
+            width: 100%;
+            padding: 30px;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 50%;
+            text-align: left;
+        }
+
+        .timeline-item:nth-child(even) {
+            right: 50%;
+            text-align: right;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid var(--achievement-accent);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: var(--accent-color);
+            font-size: 24px;
+            box-shadow: 0 0 20px var(--achievement-glow);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-icon {
+            left: -30px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-icon {
+            right: -30px;
+        }
+
+        .glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 var(--achievement-glow); }
+            100% { box-shadow: 0 0 0 15px rgba(42,45,124,0); }
+        }
+
+        .timeline-content {
+            background: var(--card-gradient);
+            padding: 25px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--achievement-border);
+            transition: all 0.3s ease;
+            position: relative;
+           overflow: hidden;
+        }
+
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 20px;
+            background: linear-gradient(45deg,
+                rgba(74,95,193,0.1) 0%,
+                rgba(255,255,255,0.2) 50%,
+                rgba(74,95,193,0.1) 100%);
+            z-index: -1;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 20px 50px rgba(74,95,193,0.2);
+        }
+
+        .timeline-content h3 {
+            color: var(--achievement-text);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-shadow: none;
+        }
+
+        .timeline-content p {
+            color: var(--achievement-text);
+            line-height: 1.6;
+            font-size: 1.1rem;
+            border-left: 2px solid var(--achievement-accent);
+            padding-left: 15px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                text-align: left !important;
+                padding-left: 70px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-icon,
+            .timeline-item:nth-child(even) .timeline-icon {
+                left: 0;
+                right: auto;
+            }
+
+            .timeline-content {
+                margin-left: 30px;
+            }
+        }
+
+        /* 联系我们 */
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .qr-cards {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .qr-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            transition: transform 0.3s ease;
+            width: 280px;
+            text-align: center;
+        }
+
+        .qr-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .qr-code {
+            position: relative;
+            margin: 0 auto;
+            width: 200px;
+            height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .qr-hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(42,45,124,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .qr-code:hover .qr-hover {
+            opacity: 1;
+        }
+
+        .qr-hover i {
+            color: white;
+            font-size: 3rem;
+        }
+
+        .qr-info h3 {
+            color: var(--primary-color);
+            margin: 1.2rem 0 0.8rem;
+            font-size: 1.4rem;
+        }
+
+        /* 社交链接样式更新 */
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            width: 180px;
+            height: 50px;
+            border-radius: 25px;
+            padding: 0 25px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--primary-color);
+            background: white;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
         }
 
         .social-links a:hover {
-            transform: scale(1.15);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
         }
 
-        .fab.fa-bilibili {
-            color: #00A1D6; /* 哔哩哔哩图标颜色 */;
+        .social-links a i {
+            font-size: 1.4rem;
         }
 
-        .fa-tiktok {
-            color: #010101; /* 抖音logo黑色部分 */;
-            background: linear-gradient(45deg, #69C9D0 0%, #EE1D52 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 0.8rem;
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .qr-card {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .social-links a {
+               width: 90%;
+               justify-content: center;
+            }
         }
     </style>
 </head>
@@ -433,41 +722,107 @@
                 <div class="dots-container" id="dotsContainer"></div>
             </div>
             <div class="team-description">
-                <p>南昌大学机器人队成立于2005年11月，团队从参加单一学科竞赛，到逐步建立面向全校本科生的“竞赛、科研、产品”科技创新体系，形成了主动“承担责任，自主管理，团结协作，学习创新”的“主动式”团队文化，创立了“机器人队+校友会+学生党支部”校内外融合的科技创新平台。一路走来，南昌大学机器人队历经技术积累、体系构建、思想建设三步曲，累积培养各专业本科生700多名，获国家级奖项49项，其他奖项100多项，成绩斐然。南昌大学机器人队注重创新创业，积极培育科研成果，开发科研产品。目前队内累计申报并立项大学生创新创业训练项目200余项，其中国家级创新创业项目21项；申请各类专利36项，其中7项已获授权。团队自主研发产品共计12项，孵化科技公司7家。得到光明日报、中国青年报、中国教育电视台、江西教育电视台、中央电视台的报道，受到了团中央、教育部和江西省主要领导的充分肯定。</p>
+                <h3>队史沿革</h3>
+                <p>南昌大学机器人队成立于<span class="key-point">2005年11月</span>，团队从参加单一学科竞赛，到逐步建立面向全校本科生的“竞赛、科研、产品”科技创新体系。</p>
+
+                <h3>人才培养</h3>
+                <p>团队累计培养<span class="key-point">700余名</span>各专业本科生，形成独具特色的"主动式"团队文化，建立"机器人队+校友会+学生党支部"的校内外融合科技创新平台。</p>
+
+                <h3>荣誉成就</h3>
+                <p>累计获得<span class="key-point">国家级奖项49项</span>，其他奖项100余项。自主研发产品12项，成功孵化<span class="key-point">7家科技公司</span>，申报专利36项（授权7项）。</p>
+
+                <h3>社会影响</h3>
+                <p>获得<span class="key-point">光明日报、中国青年报、中国教育电视台、江西教育电视台、中央电视台</span>等权威媒体报道，受到团中央、教育部和江西省主要领导的高度肯定。</p>
             </div>
         </div>
     </section>
 
     <!-- 赛事成绩 -->
     <section class="section" id="achievements">
-        <h2 class="section-title">赛事成绩</h2>
-        <div class="achievements">
-            <div class="card">
-                <h3>2018赛季</h3>
-                <p>团中央、全国学联授予南昌大学机器人队大学生“小平科技创新团队”称号，全国高校中仅50家科技社团获此殊荣。</p>
-            </div>
-            <div class="card">
-                <h3>2020赛季</h3>
-                <p>RoboMaster全国机器人大赛 一等奖</p>
-            </div>
-            <div class="card">
-                <h3>2021赛季</h3>
-                <p>RoboMaster全国机器人大赛 一等奖</p>
-            </div>
-            <div class="card">
-                <h3>2022赛季</h3>
-                <p>RoboMaster全国机器人大赛 二等奖</p>
-            </div>
-            <div class="card">
-                <h3>2023赛季</h3>
-                <p>RoboMaster全国机器人大赛 二等奖</p>
-            </div>
-            <div class="card">
-                <h3>2024赛季</h3>
-                <p>RoboMaster全国总决赛 八强</p>
-            </div>
-            <div class="card">
-                <h3>未完待续......</h3>
+        <h2 class="section-title" style="color: white; text-shadow: 0 0 15px rgba(42,45,124,0.8);">赛事成绩</h2>
+        <div class="timeline-container">
+            <div class="timeline">
+                <!-- 时间轴线条 -->
+                <div class="timeline-line"></div>
+
+                <!-- 时间节点 -->
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <div class="glow"></div>
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>2018赛季</h3>
+                        <p>斩获全国高校仅50席的<br>"小平科技创新团队"称号</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <div class="glow"></div>
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>2020赛季</h3>
+                        <p>RoboMaster全国赛<br>一等奖</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <div class="glow"></div>
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>2021赛季</h3>
+                        <p>RoboMaster全国赛<br>一等奖</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <div class="glow"></div>
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>2022赛季</h3>
+                        <p>RoboMaster全国赛<br>二等奖</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <div class="glow"></div>
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>2023赛季</h3>
+                        <p>RoboMaster全国赛<br>二等奖</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <div class="glow"></div>
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>2024赛季</h3>
+                        <p>全国八强<br>创造历史最佳战绩</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item tbd">
+                    <div class="timeline-icon">
+                        <div class="glow"></div>
+                        <i class="fas fa-question"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>未完待续</h3>
+                        <p>......</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -475,11 +830,63 @@
     <!-- 联系我们 -->
     <section class="section" id="contact">
         <h2 class="section-title">联系我们</h2>
-        <div class="contact-info">
-            <p>待添加</p>
+        <div class="contact-container">
+            <!-- 二维码卡片容器 -->
+            <div class="qr-cards">
+                <!-- 微信公众号 -->
+                <div class="qr-card">
+                    <div class="qr-code">
+                        <img src="weixin.jpg" alt="微信公众号二维码">
+                        <div class="qr-hover">
+                            <i class="fab fa-weixin"></i>
+                        </div>
+                    </div>
+                    <div class="qr-info">
+                        <h3>微信公众号</h3>
+                        <p>扫码关注获取最新资讯</p>
+                    </div>
+                </div>
+
+                <!-- Bilibili -->
+                <div class="qr-card">
+                    <div class="qr-code">
+                        <img src="bilibili.jpg" alt="B站二维码">
+                        <div class="qr-hover">
+                            <i class="fab fa-bilibili"></i>
+                        </div>
+                    </div>
+                    <div class="qr-info">
+                        <h3>Bilibili 官方号</h3>
+                        <p>扫码关注观看比赛视频</p>
+                    </div>
+                </div>
+
+                <!-- 抖音 -->
+                <div class="qr-card">
+                    <div class="qr-code">
+                        <img src="douyin.png" alt="抖音二维码">
+                        <div class="qr-hover">
+                            <i class="fab fa-tiktok"></i>
+                        </div>
+                    </div>
+                    <div class="qr-info">
+                        <h3>抖音官方号</h3>
+                        <p>扫码关注观看精彩短视频</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 原有社交链接保留 -->
             <div class="social-links">
-                <a href="https://space.bilibili.com/480643172?spm_id_from=333.1387.follow.user_card.click " target="_blank"><i class="fab fa-bilibili"></i></a>
-                <a href="https://www.douyin.com/user/MS4wLjABAAAAcwOte0U9uP9hlxCxzKlGeW49FMKNGTaf8WDfku1TPAoAi1vDQOmsrMYsk3h68m8- " target="_blank"><i class="fab fa-tiktok"></i></a>
+                <p style="margin-bottom: 1.5rem; color: var(--primary-color);">快速访问我们的官方平台：</p>
+                <a href="https://space.bilibili.com/480643172" target="_blank">
+                    <i class="fab fa-bilibili"></i>
+                    <span>Bilibili主页</span>
+                </a>
+                <a href="https://www.douyin.com/user/MS4wLjABAAAAcwOte0U9uP9hlxCxzKlGeW49FMKNGTaf8WDfku1TPAoAi1vDQOmsrMYsk3h68m8-" target="_blank">
+                    <i class="fab fa-tiktok"></i>
+                    <span>抖音主页</span>
+                </a>
             </div>
         </div>
     </section>
