@@ -563,6 +563,86 @@
             }
         }
 
+        /* 新增机器人展示样式 */
+        #robots {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--achievement-primary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .robot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .robot-card {
+            background: var(--card-gradient);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .robot-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(42,45,124,0.2);
+        }
+
+        .robot-image {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            background: var(--primary-color);
+        }
+
+        .robot-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .robot-card:hover .robot-image img {
+            transform: scale(1.05);
+        }
+
+        .robot-info {
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .robot-name {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .robot-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .robot-tag {
+            background: rgba(230,57,70,0.1);
+            color: var(--secondary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .robot-desc {
+            color: var(--achievement-text);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
         /* 联系我们 */
         .contact-container {
             max-width: 1200px;
@@ -689,6 +769,7 @@
         <div class="nav-links">
             <a href="#home">首页</a>
             <a href="#about">关于我们</a>
+            <a href="#robots">阵容介绍</a>
             <a href="#achievements">赛事成绩</a>
             <a href="#contact">联系我们</a>
         </div>
@@ -733,6 +814,173 @@
 
                 <h3>社会影响</h3>
                 <p>获得<span class="key-point">光明日报、中国青年报、中国教育电视台、江西教育电视台、中央电视台</span>等权威媒体报道，受到团中央、教育部和江西省主要领导的高度肯定。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="robots">
+        <h2 class="section-title" style="color: white;">阵容介绍</h2>
+        <div class="robot-grid">
+            <!-- 步兵机器人 -->
+            <div class="robot-card">
+                <div class="robot-image">
+                    <img src="平衡步兵.JPG" alt="平衡步兵机器人">
+                </div>
+                <div class="robot-info">
+                    <h3 class="robot-name">平衡步兵机器人</h3>
+                    <div class="robot-tags">
+                        <span class="robot-tag">双边轮腿</span>
+                        <span class="robot-tag">行动灵活</span>
+                        <span class="robot-tag">抗干扰强</span>
+                    </div>
+                    <p class="robot-desc">
+
+                    </p>
+                </div>
+            </div>
+
+            <!-- 英雄机器人 -->
+            <div class="robot-card">
+                <div class="robot-image">
+                    <img src="英雄.JPG" alt="英雄机器人">
+                </div>
+                <div class="robot-info">
+                    <h3 class="robot-name">英雄机器人</h3>
+                    <div class="robot-tags">
+                        <span class="robot-tag">双摩擦轮</span>
+                        <span class="robot-tag">内嵌式麦轮</span>
+                        <span class="robot-tag">快速通过</span>
+                    </div>
+                    <p class="robot-desc">
+                        配备双轴稳定云台和42mm大弹丸发射器。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 哨兵机器人 -->
+            <div class="robot-card">
+                <div class="robot-image">
+                    <img src="哨兵.JPG" alt="哨兵机器人">
+                </div>
+                <div class="robot-info">
+                    <h3 class="robot-name">哨兵机器人</h3>
+                    <div class="robot-tags">
+                        <span class="robot-tag">上下双云台</span>
+                        <span class="robot-tag">态势感知</span>
+                        <span class="robot-tag">自主决策</span>
+                    </div>
+                    <p class="robot-desc">
+                        全自动导航机器人，搭载多传感器融合感知系统。配备双17mm速射炮塔，具备360°巡逻能力。采用SLAM技术实现自主路径规划，可攻可守。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 无人机 -->
+            <div class="robot-card">
+                <div class="robot-image">
+                    <img src="无人机.JPG" alt="无人机">
+                </div>
+                <div class="robot-info">
+                    <h3 class="robot-name">空中机器人</h3>
+                    <div class="robot-tags">
+                        <span class="robot-tag">三轴云台</span>
+                        <span class="robot-tag">轻量化机体</span>
+                        <span class="robot-tag">中心供弹</span>
+                    </div>
+                    <p class="robot-desc">
+                        采用四旋翼结构，具备高效的空中机动性能。通过飞控算法，可实现在复杂地形环境中保持稳定飞行。搭载高精度视觉识别系统，可快速识别地面目标并进行精准打击，提供强大的火力覆盖。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 工程机器人 -->
+            <div class="robot-card">
+                <div class="robot-image">
+                    <img src="工程.JPG" alt="工程机器人">
+                </div>
+                <div class="robot-info">
+                    <h3 class="robot-name">工程机器人</h3>
+                    <div class="robot-tags">
+                        <span class="robot-tag">龙门架小臂</span>
+                        <span class="robot-tag">大存矿量</span>
+                        <span class="robot-tag">五轴精准控制</span>
+                    </div>
+                    <p class="robot-desc">
+                        配备机械臂和高容量弹药舱，能够自动为友方机器人提供弹药补给。具备极强的地形适应能力，能够在各种复杂的战场环境中稳定运行。通过先进的传感器和控制系统，能够实现与多台机器人协同作战，提高整体作战效率。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 麦轮步兵 -->
+            <div class="robot-card">
+                <div class="robot-image">
+                    <img src="麦轮步兵.JPG" alt="麦轮步兵机器人">
+                </div>
+                <div class="robot-info">
+                    <h3 class="robot-name">麦轮步兵机器人</h3>
+                    <div class="robot-tags">
+                        <span class="robot-tag">半下供弹云台</span>
+                        <span class="robot-tag">精准自瞄</span>
+                        <span class="robot-tag">内嵌式麦轮</span>
+                    </div>
+                    <p class="robot-desc">
+
+                    </p>
+                </div>
+            </div>
+
+            <!-- 雷达机器人 -->
+            <div class="robot-card">
+                <div class="robot-image">
+                    <img src="雷达.JPG" alt="雷达机器人">
+                </div>
+                <div class="robot-info">
+                    <h3 class="robot-name">雷达系统</h3>
+                    <div class="robot-tags">
+                        <span class="robot-tag">远程探测</span>
+                        <span class="robot-tag">精准定位</span>
+                        <span class="robot-tag">神经网络</span>
+                    </div>
+                    <p class="robot-desc">
+
+                    </p>
+                </div>
+            </div>
+
+            <!-- 全向轮步兵 -->
+            <div class="robot-card">
+                <div class="robot-image">
+                    <img src="全向轮步兵.JPG" alt="全向轮步兵机器人">
+                </div>
+                <div class="robot-info">
+                    <h3 class="robot-name">全向轮步兵机器人</h3>
+                    <div class="robot-tags">
+                        <span class="robot-tag">响应迅速</span>
+                        <span class="robot-tag">精准打击</span>
+                        <span class="robot-tag">小巧灵活</span>
+                    </div>
+                    <p class="robot-desc">
+                        采用全向轮底盘，具备出色的机动性能和快速突进能力。搭载自稳云台和远程打击武器系统，能够在高速移动中保持精准射击。通过复杂的机械结构和先进的控制算法，能够在不同地形和运动状态下保持稳定。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 飞镖 -->
+            <div class="robot-card">
+                <div class="robot-image">
+                    <img src="飞镖.JPG" alt="飞镖机器人">
+                </div>
+                <div class="robot-info">
+                    <h3 class="robot-name">飞镖机器人</h3>
+                    <div class="robot-tags">
+                        <span class="robot-tag">恒力供弹</span>
+                        <span class="robot-tag">旋转式换弹</span>
+                        <span class="robot-tag">分体式飞镖</span>
+                    </div>
+                    <p class="robot-desc">
+
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -964,6 +1212,28 @@
 
         // 每3秒切换一次图片
         setInterval(nextPhoto, 3800);
+
+        // 添加卡片悬停立体效果
+    document.querySelectorAll('.robot-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = card.offsetWidth / 2;
+            const centerY = card.offsetHeight / 2;
+
+            card.style.transform = `
+                perspective(1000px)
+                rotateX(${(y - centerY) / 25}deg)
+                rotateY(${-(x - centerX) / 25}deg)
+                translateZ(10px)
+            `;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+        });
+    });
     </script>
 </body>
 </html>
