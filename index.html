@@ -56,7 +56,8 @@
         }
 
         .navbar.scrolled {
-            background: var(--nav-semi-transparent);
+            background: #ffffff !important; /* 白色背景带轻微透明度 */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
         }
 
         .logo {
@@ -102,6 +103,16 @@
 
         .nav-links a:hover::before {
             width: 60%;
+        }
+
+        /* 滚动后导航栏文字颜色 */
+        .navbar.scrolled .nav-links a {
+            color: #000 !important; /* 黑色文字 */
+        }
+
+        /* 滚动后导航栏hover效果 */
+        .navbar.scrolled .nav-links a:hover {
+            background: rgba(0,0,0,0.05) !important; /* 浅灰色背景hover效果 */
         }
 
         /* 首页背景 */
@@ -574,7 +585,7 @@
 
         .robot-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%),1fr));
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
